@@ -1,5 +1,8 @@
 <?php include "db_connect.php"; ?>
 <?php session_start(); ?>
+<?php if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
+  header('location:index.php');
+} ?>
 <?php include_once "header.php"; ?>
 <!-- Insert new user -->
 <?php
