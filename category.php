@@ -6,8 +6,8 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 }
 if (isset($_POST['submit'])) {
-  $cat_name = $_POST['cat_name'];
-  $query = $pdo->prepare("SELECT * FROM tbl_user WHERE cat_name = '$cat_name'");
+  $cat_name = $_POST['txtCategory'];
+  $query = $pdo->prepare("SELECT * FROM tbl_category WHERE cat_name = '$cat_name'");
   $query->execute();
   if ($query->rowCount() > 0) {
     $errors[] = "The Category already exist";
@@ -60,6 +60,24 @@ if (isset($_POST['submit'])) {
             <div class="box-footer">
               <button type="submit" name="submit" class="btn btn-info">Save</button>
             </div>
+            <?php
+            if (isset($_GET['edit_id'])) {
+              $cat_id = $_GET['edit_id'];
+              $query = $pdo->prepare("SELECT * FROM tbl_category WHERE cat_id = '$cat_id'");
+              $query->execute();
+              $category = $query->fetch(PDO::FETCH_ASSOC);
+            ?>
+              <form action="" method="post">
+                <div class="form-group">
+                  <label for="name">Edit Name</label>
+                  <input type="text" class="form-control" name="txtCategory" value="<?= $category['cat_name'] ?>" id="name" placeholder="Enter category name">
+                </div>
+                <div class="box-footer">
+                  <button type="submit" name="submit" class="btn btn-info">Update</button>
+                </div>
+              </form>
+            <?php }
+            ?>
           </div>
           <div class="col-md-8">
             <table class="table table-striped">
@@ -79,6 +97,10 @@ if (isset($_POST['submit'])) {
                   <tr>
                     <td><?= $category['cat_id'] ?></td>
                     <td><?= $category['cat_name'] ?></td>
+                    <td style="width: 20%;">
+                      <a class="btn btn-warning" href="category.php?edit_id=<?= $category['cat_id'] ?>">Edit</a>
+                      <a class="btn btn-danger" href="category.php?cat_id=<?= $category['cat_id'] ?>">X</a>
+                    </td>
                   </tr>
                 <?php }
                 ?>
