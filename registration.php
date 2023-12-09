@@ -3,7 +3,7 @@
 <?php if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 } ?>
-<?php include_once "header.php"; ?>
+<?php include_once "header-user.php"; ?>
 <!-- Insert new user -->
 <?php
 if (isset($_POST['submit'])) {

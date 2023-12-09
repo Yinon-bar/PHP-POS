@@ -3,7 +3,7 @@ if ($_SESSION['user_email'] == "") {
   header('location:index.php');
 } ?>
 
-<?php include_once "header-user.php"; ?>
+<?php include_once "header.php"; ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
