@@ -1,9 +1,27 @@
 <?php session_start(); ?>
+<?php include "db_connect.php"; ?>
 <?php include_once "header-user.php"; ?>
 <?php
 if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
-} ?>
+}
+if (isset($_POST['submit'])) {
+  $cat_name = $_POST['cat_name'];
+  $query = $pdo->prepare("SELECT * FROM tbl_user WHERE cat_name = '$cat_name'");
+  $query->execute();
+  if ($query->rowCount() > 0) {
+    $errors[] = "The Category already exist";
+  } else {
+    $query = $pdo->prepare("INSERT INTO tbl_category (cat_name) VALUES(:cat_name)");
+    $query->bindParam(':cat_name', $_POST['txtCategory']);
+    if ($query->execute()) {
+      $errors[] = "Category inserted";
+    } else {
+      echo "Error";
+    }
+  }
+}
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -53,6 +71,17 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
                 </tr>
               </thead>
               <tbody>
+                <?php
+                $query = $pdo->prepare("SELECT * FROM tbl_category");
+                $query->execute();
+                $categories = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($categories as $category) { ?>
+                  <tr>
+                    <td><?= $category['cat_id'] ?></td>
+                    <td><?= $category['cat_name'] ?></td>
+                  </tr>
+                <?php }
+                ?>
               </tbody>
             </table>
           </div>
