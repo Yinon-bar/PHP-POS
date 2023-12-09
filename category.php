@@ -21,6 +21,16 @@ if (isset($_POST['submit'])) {
     }
   }
 }
+if (isset($_POST['update-submit'])) {
+  $cat_name = $_POST['txtCategory'];
+  $cat_id = $_GET['edit_id'];
+  $query = $pdo->prepare("UPDATE tbl_category SET cat_name = '$cat_name' WHERE cat_id = '$cat_id'");
+  if ($query->execute()) {
+    $errors[] = "Category Updated!";
+  } else {
+    echo "Error";
+  }
+}
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -73,7 +83,7 @@ if (isset($_POST['submit'])) {
                   <input type="text" class="form-control" name="txtCategory" value="<?= $category['cat_name'] ?>" id="name" placeholder="Enter category name">
                 </div>
                 <div class="box-footer">
-                  <button type="submit" name="submit" class="btn btn-info">Update</button>
+                  <button type="submit" name="update-submit" class="btn btn-info">Update</button>
                 </div>
               </form>
             <?php }
