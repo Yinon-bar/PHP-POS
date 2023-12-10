@@ -1,5 +1,6 @@
 <?php session_start() ?>
 <?php
+include_once "db_connect.php";
 if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 } ?>
@@ -44,7 +45,17 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
               <label>Category</label>
               <select class="form-control" name="txtRole">
                 <option value="0" disabled selected>Select Category</option>
-                <option value="1">User</option>
+                <?php
+                $query = $pdo->prepare("SELECT * FROM tbl_category");
+                $query->execute();
+                $categories = $query->fetchAll(PDO::FETCH_ASSOC);
+                if (!$query) {
+                  echo "Error";
+                }
+                foreach ($categories as $category) { ?>
+                  <option value="1"><?= $category['cat_name'] ?></option>
+                <?php }
+                ?>
               </select>
             </div>
             <div class="form-group">
