@@ -69,8 +69,8 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
               <textarea class="form-control" name="txtDesc" id="txtDesc" placeholder="Description" rows="4"></textarea>
             </div>
             <div class="form-group">
-              <label for="txtDesc">Product image</label>
-              <input type="file" name="" id="">
+              <label for="txtImage">Product image</label>
+              <input class="form-control" type="file" name="txtImage" id="txtImage">
             </div>
           </div>
         </div>
