@@ -7,13 +7,13 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
 <?php include_once "header-user.php"; ?>
 <?php
 if (isset($_POST['add_product'])) {
-  $product_name = $POST['txtName'];
-  $product_category = $POST['txtCategory'];
-  $product_purchase = $POST['txtPurchasePrice'];
-  $product_sell = $POST['txtPrice'];
-  $product_stock = $POST['txtStock'];
-  $product_description = $POST['txtDesc'];
-  $product_img = $POST['txtImage'];
+  $product_name = $_POST['txtName'];
+  $product_category = $_POST['txtCategory'];
+  $product_purchase = $_POST['txtPurchasePrice'];
+  $product_sell = $_POST['txtPrice'];
+  $product_stock = $_POST['txtStock'];
+  $product_description = $_POST['txtDesc'];
+  // $product_img = $_POST['txtImage'];
   $f_name = $_FILES['txtImage']['name'];
   $f_temp = $_FILES['txtImage']['tmp_name'];
   // $f_size = $_FILES['txtImage']['size'];
