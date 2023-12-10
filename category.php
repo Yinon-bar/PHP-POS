@@ -1,10 +1,10 @@
 <?php session_start(); ?>
 <?php include "db_connect.php"; ?>
-<?php include_once "header-user.php"; ?>
 <?php
-if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
+if (empty($_SESSION) || $_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 }
+include_once "header-user.php";
 if (isset($_POST['submit'])) {
   $cat_name = $_POST['txtCategory'];
   $query = $pdo->prepare("SELECT * FROM tbl_category WHERE cat_name = '$cat_name'");
