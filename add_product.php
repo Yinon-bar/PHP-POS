@@ -5,13 +5,27 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 } ?>
 <?php include_once "header-user.php"; ?>
-
+<?php
+if (isset($_POST['add_product'])) {
+  $product_name = $POST['txtName'];
+  $product_category = $POST['txtCategory'];
+  $product_purchase = $POST['txtPurchasePrice'];
+  $product_sell = $POST['txtPrice'];
+  $product_stock = $POST['txtStock'];
+  $product_description = $POST['txtDesc'];
+  $product_img = $POST['txtImage'];
+  $f_name = $_FILES['txtImage']['name'];
+  $f_temp = $_FILES['txtImage']['tmp_name'];
+  // $f_size = $_FILES['txtImage']['size'];
+  move_uploaded_file($f_temp, "/upload" . $f_name);
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Add Product
+      <a href="product_list.php" class="btn btn-primary">Back to product list</a>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -26,7 +40,7 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
       <div class="box-header with-border">
         <h3 class="box-title">Product</h3>
       </div>
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
         <div class="box-body">
           <div class="col-md-6">
             <div class="bg-danger text-danger padding-3">
@@ -38,12 +52,12 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
               } ?>
             </div>
             <div class="form-group">
-              <label for="name">Product Name</label>
-              <input type="text" class="form-control" name="txtCategory" id="name" placeholder="Enter category name">
+              <label for="txtName">Product Name</label>
+              <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Enter category name">
             </div>
             <div class="form-group">
               <label>Category</label>
-              <select class="form-control" name="txtRole">
+              <select class="form-control" name="txtCategory">
                 <option value="0" disabled selected>Select Category</option>
                 <?php
                 $query = $pdo->prepare("SELECT * FROM tbl_category");
@@ -53,21 +67,18 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
                   echo "Error";
                 }
                 foreach ($categories as $category) { ?>
-                  <option value="1"><?= $category['cat_name'] ?></option>
+                  <option value="<?= $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
                 <?php }
                 ?>
               </select>
             </div>
             <div class="form-group">
-              <label for="txtPrice">Purchase price</label>
-              <input type="number" class="form-control" name="txtPrice" id="txtPrice" placeholder="Enter category price">
+              <label for="txtPurchasePrice">Purchase price</label>
+              <input type="number" class="form-control" name="txtPurchasePrice" id="txtPurchasePrice" placeholder="Enter category price">
             </div>
             <div class="form-group">
               <label for="txtPrice">Sell price</label>
               <input type="number" class="form-control" name="txtPrice" id="txtPrice" placeholder="Enter category price">
-            </div>
-            <div class="box-footer">
-              <button type="submit" name="submit" class="btn btn-info">Save</button>
             </div>
           </div>
           <div class="col-md-6">
@@ -84,6 +95,9 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
               <input class="form-control" type="file" name="txtImage" id="txtImage">
             </div>
           </div>
+        </div>
+        <div class="box-footer">
+          <button type="submit" name="add_product" class="btn btn-info">Add product</button>
         </div>
       </form>
     </div>
