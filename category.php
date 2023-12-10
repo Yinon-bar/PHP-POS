@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     }
   }
 }
+// Update category
 if (isset($_POST['update-submit'])) {
   $cat_name = $_POST['txtCategory'];
   $cat_id = $_GET['edit_id'];
@@ -29,6 +30,15 @@ if (isset($_POST['update-submit'])) {
     $errors[] = "Category Updated!";
   } else {
     echo "Error";
+  }
+}
+// Delete category
+if (isset($_GET['cat_id'])) {
+  $cat_id = $_GET['cat_id'];
+  $query = $pdo->prepare("DELETE FROM tbl_category WHERE cat_id = '$cat_id'");
+  $query->execute();
+  if ($query->rowCount() > 0) {
+    $errors[] = "Deleted successfully";
   }
 }
 ?>
