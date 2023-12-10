@@ -17,7 +17,7 @@ if (isset($_POST['add_product'])) {
   $f_name = $_FILES['txtImage']['name'];
   $f_temp = $_FILES['txtImage']['tmp_name'];
   // $f_size = $_FILES['txtImage']['size'];
-  move_uploaded_file($f_temp, "/upload" . $f_name);
+  move_uploaded_file($f_temp, "upload/" . $f_name);
 }
 ?>
 <!-- Content Wrapper. Contains page content -->
