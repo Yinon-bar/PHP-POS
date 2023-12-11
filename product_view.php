@@ -21,7 +21,11 @@
   <!-- Main content -->
   <section class="content container-fluid">
 
-    <!--Your Page Content Here-->
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Category</h3>
+      </div>
+    </div>
 
   </section>
   <!-- /.content -->
