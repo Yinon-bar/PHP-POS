@@ -36,16 +36,22 @@ if (isset($_GET['view_id'])) {
         <h3 class="box-title">View Product</h3>
       </div>
       <div class="box-body">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <ul class="list-group">
             <center>
               <p class="list-group-item list-group-item-success"><b>Product Detail</b></p>
             </center>
-            <li class="list-group-item">ID <span class="label label-info pull-right"><?= $product['p_id']; ?></span></li>
-            <li class="list-group-item">Product name<span class="label label-info pull-right"><?= $product['p_name']; ?></span></li>
+            <li class="list-group-item">ID <span class="pull-right"><?= $product['p_id']; ?></span></li>
+            <li class="list-group-item">Product name <span class="pull-right"><?= $product['p_name']; ?></span></li>
+            <li class="list-group-item">Product Category <span class="pull-right"><?= $product['p_category']; ?></span></li>
+            <li class="list-group-item">Purchase Price <span class="pull-right"><?= $product['purchase_price']; ?></span></li>
+            <li class="list-group-item">Sell Price <span class="pull-right"><?= $product['sell_price']; ?></span></li>
+            <li class="list-group-item">Profit <span class="pull-right"><?= $product['sell_price'] - $product['purchase_price']; ?></span></li>
+            <li class="list-group-item">Stock <span class="pull-right"><?= $product['p_stock']; ?></span></li>
+            <li class="list-group-item"><b>Description:</b> <span class=""><?= $product['p_desc']; ?></span></li>
           </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <ul class="list-group">
             <center>
               <p class="list-group-item list-group-item-success"><b>Product Image</b></p>
