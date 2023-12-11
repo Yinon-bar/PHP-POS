@@ -48,7 +48,7 @@
                 <td><?= $product['purchase_price'] ?></td>
                 <td><?= $product['sell_price'] ?></td>
                 <td><?= $product['p_stock'] ?></td>
-                <td><?= $product['p_desc'] ?></td>
+                <td style="max-width: 250px;"><?= $product['p_desc'] ?></td>
                 <td><img style="width: 100px;" src="<?= $product['p_image'] ?>" class="img-rounded"></td>
                 <td>
                   <a class="btn btn-info" href="product_view.php?view_id=<?= $product['p_id']; ?>">View</a>

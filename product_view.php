@@ -31,6 +31,9 @@ if (isset($_GET['view_id'])) {
   </section>
   <!-- Main content -->
   <section class="content container-fluid">
+    <h1>
+      <a href="product_list.php" class="btn btn-primary">Back to product list</a>
+    </h1>
     <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">View Product</h3>
@@ -56,9 +59,7 @@ if (isset($_GET['view_id'])) {
             <center>
               <p class="list-group-item list-group-item-success"><b>Product Image</b></p>
             </center>
-            <li class="list-group-item">new <span class="badge">5</span></li>
-            <li class="list-group-item">Item<span class="badge">12</span></li>
-            <li class="list-group-item">new <span class="badge">5</span></li>
+            <img style="align-self: center; margin: auto; margin-top:2rem;" class="img-responsive" src="<?= $product['p_image'] ?>">
           </ul>
         </div>
       </div>
