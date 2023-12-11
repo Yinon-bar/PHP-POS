@@ -51,7 +51,7 @@
                 <td><?= $product['p_desc'] ?></td>
                 <td><img style="width: 100px;" src="<?= $product['p_image'] ?>" class="img-rounded"></td>
                 <td>
-                  <a class="btn btn-info" href="product_view.php?id=<?= $product['p_id']; ?>">View</a>
+                  <a class="btn btn-info" href="product_view.php?view_id=<?= $product['p_id']; ?>">View</a>
                   <a class="btn btn-warning" href="product_edit.php?id=<?= $product['p_id']; ?>">Edit</a>
                   <a class="btn btn-danger" href="product_delete.php?id=<?= $product['p_id']; ?>">X</a>
                 </td>
