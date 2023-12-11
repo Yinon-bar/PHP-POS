@@ -36,7 +36,25 @@ if (isset($_GET['view_id'])) {
         <h3 class="box-title">View Product</h3>
       </div>
       <div class="box-body">
-
+        <div class="col-md-6">
+          <ul class="list-group">
+            <center>
+              <p class="list-group-item list-group-item-success"><b>Product Detail</b></p>
+            </center>
+            <li class="list-group-item">ID <span class="label label-info pull-right"><?= $product['p_id']; ?></span></li>
+            <li class="list-group-item">Product name<span class="label label-info pull-right"><?= $product['p_name']; ?></span></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group">
+            <center>
+              <p class="list-group-item list-group-item-success"><b>Product Image</b></p>
+            </center>
+            <li class="list-group-item">new <span class="badge">5</span></li>
+            <li class="list-group-item">Item<span class="badge">12</span></li>
+            <li class="list-group-item">new <span class="badge">5</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
