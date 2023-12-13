@@ -31,8 +31,12 @@ if (isset($_POST['update_product'])) {
   $product_stock = $_POST['txtStock'];
   $product_description = $_POST['txtDesc'];
   $f_name = $_FILES['txtImage']['name'];
+  if (!empty($f_name)) {
+    $f_location  = "upload/" . $f_name;
+  } else {
+    $f_name = $f_location;
+  }
   $f_temp = $_FILES['txtImage']['tmp_name'];
-  $f_location = "upload/" . $f_name;
   move_uploaded_file($f_temp, "upload/" . $f_name);
   $query = $pdo->prepare(
     "UPDATE tbl_product 
@@ -49,7 +53,6 @@ if (isset($_POST['update_product'])) {
   $query->bindParam(':f_location', $f_location);
   if ($query->execute()) {
     $messages[] = "Product Added!";
-    header('location: product_edit?id=' . $product_id);
   } else {
     echo "Error";
   }
@@ -119,8 +122,8 @@ if (isset($_POST['update_product'])) {
             </div>
             <div class="form-group">
               <label for="txtImage">Product image</label>
-              <img style="width: 100px; margin:1rem; display:block;" src="<?= $product['p_image'] ?>" class="img-rounded">
-              <input class="form-control" value="<?= $product['p_image'] ?>" type="file" name="txtImage" id="txtImage">
+              <img style="width: 100px; margin:1rem; display:block;" src="<?= $f_name ?>" class="img-rounded">
+              <input class="form-control" value="<?= $f_location ?>" type="file" name="txtImage" id="txtImage">
             </div>
           </div>
         </div>
