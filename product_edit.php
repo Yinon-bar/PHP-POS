@@ -5,6 +5,45 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   header('location:index.php');
 } ?>
 <?php include_once "header-user.php"; ?>
+<?php
+if (isset($_GET['id'])) {
+  $product_id = $_GET['id'];
+  $query = $pdo->prepare("SELECT * FROM tbl_product WHERE p_id = '$product_id'");
+  $query->execute();
+  if ($query->rowCount() == 1) {
+    $product = $query->fetch(PDO::FETCH_ASSOC);
+  } else {
+    $errors[] = "Error";
+  }
+  $product_name = $product['p_name'];
+  $product_category = $product['p_category'];
+  $product_purchase = $product['purchase_price'];
+  $product_sell = $product['sell_price'];
+  $product_stock = $product['p_stock'];
+  $product_description = $product['p_desc'];
+  $f_location = $product['p_image'];
+}
+if (isset($_POST['update_product'])) {
+  $query = $pdo->prepare(
+    "UPDATE tbl_product 
+    SET
+    p_name = :product_name, p_category, = :product_category, purchase_price = :product_purchase, sell_price = :product_sell, p_stock = :product_stock, p_desc = :product_description, p_image = :f_location 
+    WHERE p_id = $product_id"
+  );
+  $query->bindParam(':product_name', $product_name);
+  $query->bindParam(':product_category', $product_category);
+  $query->bindParam(':product_purchase', $product_purchase);
+  $query->bindParam(':product_sell', $product_sell);
+  $query->bindParam(':product_stock', $product_stock);
+  $query->bindParam(':product_description', $product_description);
+  $query->bindParam(':f_location', $f_location);
+  if ($query->execute()) {
+    $messages[] = "Product Added!";
+  } else {
+    echo "Error";
+  }
+}
+?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -23,14 +62,14 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
   <section class="content container-fluid">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">Category</h3>
+        <h3 class="box-title">Update Product</h3>
       </div>
       <form role="form" method="post" enctype="multipart/form-data">
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
               <label for="txtName">Product Name</label>
-              <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Enter category name" required>
+              <input type="text" class="form-control" value="<?= $product['p_name'] ?>" name="txtName" id="txtName" placeholder="Enter category name" required>
             </div>
             <div class="form-group">
               <label>Category</label>
@@ -51,30 +90,30 @@ if ($_SESSION['user_email'] == "" || $_SESSION['user_role'] == 'user') {
             </div>
             <div class="form-group">
               <label for="txtPurchasePrice">Purchase price</label>
-              <input type="number" class="form-control" name="txtPurchasePrice" id="txtPurchasePrice" placeholder="Enter category price" required>
+              <input type="number" class="form-control" value="<?= $product['purchase_price'] ?>" name="txtPurchasePrice" id="txtPurchasePrice" placeholder="Enter category price" required>
             </div>
             <div class="form-group">
               <label for="txtPrice">Sell price</label>
-              <input type="number" class="form-control" name="txtPrice" id="txtPrice" placeholder="Enter category price" required>
+              <input type="number" class="form-control" value="<?= $product['sell_price'] ?>" name="txtPrice" id="txtPrice" placeholder="Enter category price" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="txtStock">Stock</label>
-              <input type="text" class="form-control" name="txtStock" id="txtStock" placeholder="Enter stock Qty" required>
+              <input type="text" class="form-control" value="<?= $product['p_stock'] ?>" name="txtStock" id="txtStock" placeholder="Enter stock Qty" required>
             </div>
             <div class="form-group">
               <label for="txtDesc">Description</label>
-              <textarea class="form-control" name="txtDesc" id="txtDesc" placeholder="Description" rows="4"></textarea>
+              <textarea class="form-control" name="txtDesc" id="txtDesc" placeholder="Description" rows="4"><?= $product['p_desc'] ?></textarea>
             </div>
             <div class="form-group">
               <label for="txtImage">Product image</label>
-              <input class="form-control" type="file" name="txtImage" id="txtImage">
+              <input class="form-control" value="<?= $product['p_image'] ?>" type="file" name="txtImage" id="txtImage">
             </div>
           </div>
         </div>
         <div class="box-footer">
-          <button type="submit" name="add_product" class="btn btn-info">Update product</button>
+          <button type="submit" name="update_product" class="btn btn-info">Update product</button>
         </div>
       </form>
     </div>
