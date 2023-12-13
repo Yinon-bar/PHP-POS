@@ -24,10 +24,20 @@ if (isset($_GET['id'])) {
   $f_location = $product['p_image'];
 }
 if (isset($_POST['update_product'])) {
+  $product_name = $_POST['txtName'];
+  $product_category = $_POST['txtCategory'];
+  $product_purchase = $_POST['txtPurchasePrice'];
+  $product_sell = $_POST['txtPrice'];
+  $product_stock = $_POST['txtStock'];
+  $product_description = $_POST['txtDesc'];
+  $f_name = $_FILES['txtImage']['name'];
+  $f_temp = $_FILES['txtImage']['tmp_name'];
+  $f_location = "upload/" . $f_name;
+  move_uploaded_file($f_temp, "upload/" . $f_name);
   $query = $pdo->prepare(
     "UPDATE tbl_product 
     SET
-    p_name = :product_name, p_category, = :product_category, purchase_price = :product_purchase, sell_price = :product_sell, p_stock = :product_stock, p_desc = :product_description, p_image = :f_location 
+    p_name = :product_name, p_category = :product_category, purchase_price = :product_purchase, sell_price = :product_sell, p_stock = :product_stock, p_desc = :product_description, p_image = :f_location 
     WHERE p_id = $product_id"
   );
   $query->bindParam(':product_name', $product_name);
@@ -39,6 +49,7 @@ if (isset($_POST['update_product'])) {
   $query->bindParam(':f_location', $f_location);
   if ($query->execute()) {
     $messages[] = "Product Added!";
+    header('location: product_edit?id=' . $product_id);
   } else {
     echo "Error";
   }
