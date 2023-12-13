@@ -83,7 +83,7 @@ if (isset($_POST['update_product'])) {
                   echo "Error";
                 }
                 foreach ($categories as $category) { ?>
-                  <option value="<?= $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
+                  <option <?= $category['cat_id'] == $product_category ? 'selected' : "" ?> value="<?= $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
                 <?php }
                 ?>
               </select>
@@ -108,6 +108,7 @@ if (isset($_POST['update_product'])) {
             </div>
             <div class="form-group">
               <label for="txtImage">Product image</label>
+              <img style="width: 100px; margin:1rem; display:block;" src="<?= $product['p_image'] ?>" class="img-rounded">
               <input class="form-control" value="<?= $product['p_image'] ?>" type="file" name="txtImage" id="txtImage">
             </div>
           </div>
