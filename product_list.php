@@ -53,7 +53,7 @@
                 <td>
                   <a class="btn btn-info" href="product_view.php?view_id=<?= $product['p_id']; ?>">View</a>
                   <a class="btn btn-warning" href="product_edit.php?id=<?= $product['p_id']; ?>">Edit</a>
-                  <button id="<?= $product['p_id']; ?>" class="btn btn-danger">X</button>
+                  <button id="<?= $product['p_id']; ?>" class="btn btn-danger btn-delete">X</button>
                 </td>
               </tr>
             <?php }
@@ -62,7 +62,26 @@
         </table>
       </div>
     </div>
-
   </section>
   <!-- /.content -->
   <?php include_once "footer.php"; ?>
+
+  <script>
+    $(document).ready(function() {
+      $(".btn-delete").click(function() {
+        console.log(this.id);
+        if (confirm(`Are you sure you want to delete this product (${this.id})`)) {
+          $.ajax({
+            type: "post",
+            url: "product_delete.php",
+            data: {
+              idToDelete: this.id
+            },
+            success: function(response) {
+              $(this).parents('tr').hide();
+            }
+          });
+        }
+      })
+    })
+  </script>
