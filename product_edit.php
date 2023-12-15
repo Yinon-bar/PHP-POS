@@ -53,6 +53,7 @@ if (isset($_POST['update_product'])) {
   $query->bindParam(':f_location', $f_location);
   if ($query->execute()) {
     $messages[] = "Product Added!";
+    echo "Success";
   } else {
     echo "Error";
   }
@@ -64,7 +65,7 @@ if (isset($_POST['update_product'])) {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Edit Product
+      <a href="product_list.php" class="btn btn-primary">Back to product list</a>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -122,7 +123,7 @@ if (isset($_POST['update_product'])) {
             </div>
             <div class="form-group">
               <label for="txtImage">Product image</label>
-              <img style="width: 100px; margin:1rem; display:block;" src="<?= $f_name ?>" class="img-rounded">
+              <img style="width: 100px; margin:1rem; display:block;" src="<?= $f_location ?>" class="img-rounded">
               <input class="form-control" value="<?= $f_location ?>" type="file" name="txtImage" id="txtImage">
             </div>
           </div>

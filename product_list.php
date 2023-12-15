@@ -53,7 +53,7 @@
                 <td>
                   <a class="btn btn-info" href="product_view.php?view_id=<?= $product['p_id']; ?>">View</a>
                   <a class="btn btn-warning" href="product_edit.php?id=<?= $product['p_id']; ?>">Edit</a>
-                  <a class="btn btn-danger" href="product_delete.php?id=<?= $product['p_id']; ?>">X</a>
+                  <button id="<?= $product['p_id']; ?>" class="btn btn-danger">X</button>
                 </td>
               </tr>
             <?php }
