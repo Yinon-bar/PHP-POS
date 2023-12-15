@@ -63,7 +63,6 @@
       </div>
     </div>
   </section>
-  <!-- /.content -->
   <?php include_once "footer.php"; ?>
 
   <script>
@@ -78,7 +77,7 @@
               idToDelete: this.id
             },
             success: function(response) {
-              $(this).parents('tr').hide();
+              location.href = 'product_list.php';
             }
           });
         }
