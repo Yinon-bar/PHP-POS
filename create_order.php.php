@@ -26,10 +26,23 @@
         </div>
         <div class="box-body">
           <div class="col-md-6">
-
+            <div class="form-group">
+              <label for="txtName">Customer Name</label>
+              <input type="text" class="form-control" name="txtCustomer" id="txtName" placeholder="Enter Customer name" required>
+            </div>
           </div>
           <div class="col-md-6">
+            <div class="form-group">
+              <label>Date:</label>
 
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="datepicker">
+              </div>
+              <!-- /.input group -->
+            </div>
           </div>
         </div>
         <div class="box-body"></div>
