@@ -24,6 +24,15 @@
         <div class="box-header with-border">
           <h3 class="box-title">New Order</h3>
         </div>
+        <div class="box-body">
+          <div class="col-md-6">
+
+          </div>
+          <div class="col-md-6">
+
+          </div>
+        </div>
+        <div class="box-body"></div>
         <div class="box-body"></div>
       </form>
     </div>
