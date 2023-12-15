@@ -17,16 +17,17 @@
       <li class="active">Here</li>
     </ol>
   </section>
-
   <!-- Main content -->
   <section class="content container-fluid">
-
     <div class="box box-info">
-      <div class="box-header with-border">
-        <h3 class="box-title">New Order</h3>
-      </div>
+      <form action="" method="post">
+        <div class="box-header with-border">
+          <h3 class="box-title">New Order</h3>
+        </div>
+        <div class="box-body"></div>
+      </form>
     </div>
 
   </section>
-  <!-- /.content -->
+
   <?php include_once "footer.php"; ?>
