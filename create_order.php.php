@@ -71,11 +71,27 @@
               <input type="text" class="form-control" name="txtSubtotal" id="txtSubtotal" required>
             </div>
             <div class="form-group">
-              <label for="txtTax">Tax</label>
+              <label for="txtTax">Tax (17%)</label>
               <input type="text" class="form-control" name="txtTax" id="txtTax" required>
+            </div>
+            <div class="form-group">
+              <label for="txtDiscount">Discount</label>
+              <input type="text" class="form-control" name="txtDiscount" id="txtDiscount" required>
             </div>
           </div>
           <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtTotal">Total</label>
+              <input type="text" class="form-control" name="txtTotal" id="txtTotal" placeholder="Enter category name" required>
+            </div>
+            <div class="form-group">
+              <label for="txtPaid">Paid</label>
+              <input type="text" class="form-control" name="txtPaid" id="txtPaid" placeholder="Enter category name" required>
+            </div>
+            <div class="form-group">
+              <label for="txtDue">Due</label>
+              <input type="text" class="form-control" name="txtDue" id="txtDue" placeholder="Enter category name" required>
+            </div>
           </div>
         </div>
       </form>
