@@ -64,7 +64,17 @@
             </table>
           </div>
         </div>
-        <div class="box-body"></div>
+        <div class="box-body">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="txtSubtotal">Subtotal</label>
+              <input type="text" class="form-control" name="txtSubtotal" id="txtSubtotal" placeholder="Enter category name" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+
+          </div>
+        </div>
       </form>
     </div>
   </section>
