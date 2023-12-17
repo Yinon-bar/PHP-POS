@@ -71,8 +71,8 @@
               <input type="text" class="form-control" name="txtSubtotal" id="txtSubtotal" required>
             </div>
             <div class="form-group">
-              <label for="txtSubtotal">Subtotal</label>
-              <input type="text" class="form-control" name="txtSubtotal" id="txtSubtotal" required>
+              <label for="txtTax">Tax</label>
+              <input type="text" class="form-control" name="txtTax" id="txtTax" required>
             </div>
           </div>
           <div class="col-md-6">
