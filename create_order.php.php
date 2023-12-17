@@ -55,7 +55,7 @@
                   <th>Price</th>
                   <th>Enter Quantity</th>
                   <th>Total</th>
-                  <th><button class="btn btn-success btn-add" name="add">+</button></th>
+                  <th><button class="btn btn-success btn-add btn-sm" name="add"><span class="glyphicon glyphicon-plus"></span></button></th>
                 </tr>
               </thead>
               <tbody>
